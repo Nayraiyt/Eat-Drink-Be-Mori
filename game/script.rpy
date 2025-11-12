@@ -21,32 +21,27 @@ define pos_9 = Position(xpos=1700, ypos=pos_default_y, xanchor='center', yanchor
 
 define positions = [pos_1,pos_2,pos_3,pos_4,pos_5,pos_6,pos_7,pos_8,pos_9]
 
+define counter_interlude = [0,0,0,0,0,0]
+define counter_ending = [0,0,0,0,0,0]
+
+label intro:
+    jump title_ch1
+label title_ch1:
+    jump ch1
+label ch1:
+    jump interlude
+label interlude:
+    jump title_ch2
+label title_ch2:
+    jump ch2
+label end:
+    jump start
+
 label start:
-
-    scene bg TestBack
-    show aze default at pos_1
-    aze "1"
-    show aze default at pos_2
-    aze "2"
-    show aze default at pos_3
-    aze "3"
-    show aze default at pos_4
-    aze "4"
-    show aze default at pos_5
-    aze "5"
-    show aze default at pos_6
-    aze "6"
-    show aze default at pos_7
-    aze "7"
-    show aze default at pos_8
-    aze "8"
-    show aze default at pos_9
-    aze "9"
-    jump test
-
-label test
-    scene bg TestBack
-    for pos in positions:
-        show aze default at pos
-        pause
+    scene bg test
+    python:
+        for index,pos in enumerate (positions):
+            renpy.show("aze default", at_list=[pos])
+            renpy.say("aze","Position: " + str(index+1))
     return
+
